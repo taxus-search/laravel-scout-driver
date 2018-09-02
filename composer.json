@@ -1,0 +1,28 @@
+{
+  "name": "taxus-search/laravel-scout-driver",
+  "description": "taxus search driver for laravel",
+  "keywords": [
+    "scout",
+    "taxus",
+    "laravel"
+  ],
+  "homepage": "https://github.com/taxus-search/laravel-scout-driver",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Mahsa jannaty zadeh",
+      "email": "info@vanda.ir"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.1.3",
+    "laravel/framework": "5.6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "TaxusSearch\\LaravelScoutDriver\\": "src"
+    }
+  }
+}
