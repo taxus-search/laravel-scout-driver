@@ -5,9 +5,13 @@ This package makes is the [Taxus](https://taxus.ir) driver for Laravel Scout.
 
 ## Contents
 
+- [Requirements](#Requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
+
+## Requirements
+This package is based on [laravel scout](https://laravel.com/docs/5.6/scout) package, So please install scout v.4 before using taxus search engine.
 
 ## Installation
 
