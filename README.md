@@ -38,6 +38,7 @@ You must add the Scout service provider and the package service provider in your
 At first, you should change your driver in config/scout.php file or in the environments:
 ```php
 // config/scout.php
+// Set your driver to taxus
     'driver' => env('SCOUT_DRIVER', 'taxus'),
 ```
 
@@ -53,7 +54,6 @@ php artisan vendor:publish
 After that, you can see taxus.php in the config folder
 ```php
 // config/taxus.php
-// Set your driver to taxus
       'authorization' => env('TAXUS_SECRET', [YOUR_SECRET_ID])
 
 ```
