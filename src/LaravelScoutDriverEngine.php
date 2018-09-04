@@ -110,18 +110,18 @@ class LaravelScoutDriverEngine extends Engine
    */
   public function search(Builder $builder)
   {
-    return $this->executeQuery($builder);
+//    return $this->executeQuery($builder);
 
-//    ob_start();
-//    $ch = curl_init();
-//    curl_setopt($ch, CURLOPT_URL, config('taxus.base_url').'/search/' . config('taxus.search_api_key').'/?query=*');
-//    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-//      'Content-Type: application/json'
-//    ));
-//    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-//
-//    $server_output = curl_exec($ch);
-//    curl_close($ch);
+    ob_start();
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, config('taxus.base_url').'/search/' . config('taxus.search_api_key').'/?query=*');
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json'
+    ));
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+
+    $server_output = curl_exec($ch);
+    curl_close($ch);
   }
 
   /**
@@ -186,19 +186,19 @@ class LaravelScoutDriverEngine extends Engine
    */
   public function map($results, $model)
   {
-    if (count($results->result['items']) === 0) {
-      return Collection::make();
-    }
-    $models = $model->getScoutModelsByIds(
-      $builder, collect($results->result['items'])->pluck('id')->values()->all()
-    )->keyBy(function ($model) {
-      return $model->getScoutKey();
-    });
-    return Collection::make($results->result['items'])->map(function ($item) use ($models) {
-      if (isset($models[$item['id']])) {
-        return $models[$item['id']];
-      }
-    })->filter()->values();
+//    if (count($results->result['items']) === 0) {
+//      return Collection::make();
+//    }
+//    $models = $model->getScoutModelsByIds(
+//      $builder, collect($results->result['items'])->pluck('id')->values()->all()
+//    )->keyBy(function ($model) {
+//      return $model->getScoutKey();
+//    });
+//    return Collection::make($results->result['items'])->map(function ($item) use ($models) {
+//      if (isset($models[$item['id']])) {
+//        return $models[$item['id']];
+//      }
+//    })->filter()->values();
 
   }
 
