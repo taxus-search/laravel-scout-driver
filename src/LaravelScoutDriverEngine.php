@@ -45,7 +45,6 @@ class LaravelScoutDriverEngine extends Engine
    */
   public function update($models)
   {
-//    dd($models);
     if ($models->isEmpty()) {
       return;
     }
@@ -65,7 +64,6 @@ class LaravelScoutDriverEngine extends Engine
     curl_setopt($ch, CURLOPT_POSTFIELDS, $model);
 
     $server_output = curl_exec ($ch);
-//dd($server_output);
     curl_close ($ch);
     }
 
@@ -110,18 +108,7 @@ class LaravelScoutDriverEngine extends Engine
    */
   public function search(Builder $builder)
   {
-//    return $this->executeQuery($builder);
 
-    ob_start();
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, config('taxus.base_url').'/search/' . config('taxus.search_api_key').'/?query=*');
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/json'
-    ));
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-
-    $server_output = curl_exec($ch);
-    curl_close($ch);
   }
 
   /**
@@ -134,8 +121,6 @@ class LaravelScoutDriverEngine extends Engine
    */
   public function paginate(Builder $builder, $perPage, $page)
   {
-    $from = ($page - 1) * $perPage;
-    return $this->executeQuery($builder, $from, $perPage);
 
   }
 
@@ -170,10 +155,6 @@ class LaravelScoutDriverEngine extends Engine
    */
   public function mapIds($results)
   {
-    $ids = [];
-    foreach($results->result->items as $document)
-      $ids[] = $document->id;
-    return collect($ids);
 
   }
 
@@ -186,19 +167,6 @@ class LaravelScoutDriverEngine extends Engine
    */
   public function map($results, $model)
   {
-//    if (count($results->result['items']) === 0) {
-//      return Collection::make();
-//    }
-//    $models = $model->getScoutModelsByIds(
-//      $builder, collect($results->result['items'])->pluck('id')->values()->all()
-//    )->keyBy(function ($model) {
-//      return $model->getScoutKey();
-//    });
-//    return Collection::make($results->result['items'])->map(function ($item) use ($models) {
-//      if (isset($models[$item['id']])) {
-//        return $models[$item['id']];
-//      }
-//    })->filter()->values();
 
   }
 
