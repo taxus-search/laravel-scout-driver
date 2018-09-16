@@ -105,7 +105,7 @@ class LaravelScoutDriverEngine extends Engine
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, config('taxus.base_url').'/items/' . $id);
       curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Authorization: ' . config('taxus.authorization'),
+        'Authorization: ' . config('taxus.key'),
         'Content-Type: application/json'
       ));
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -156,7 +156,7 @@ class LaravelScoutDriverEngine extends Engine
 
     $filters = rtrim($filters, '&');
 
-    $curl_url = config('taxus.base_url').'/search/' . config('taxus.search_api_key').'/?query='.urlencode($builder->query);
+    $curl_url = config('taxus.base_url').'/search/' . config('taxus.search_key').'/?query='.urlencode($builder->query);
     $defaultFieldList='fields=id,type';
     $curl_url .='&'.$defaultFieldList;
 
