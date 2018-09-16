@@ -42,7 +42,7 @@ At first, you should change your driver in config/scout.php file or in the envir
     'driver' => env('SCOUT_DRIVER', 'taxus'),
 ```
 
-You must have a Taxus secret ID. visit [Taxus.ir](https://taxus.ir)
+You must have an api key and a search api key. visit [Taxus.ir](https://taxus.ir)
 
 If you need help with this please refer to the [Taxus documentation](https://taxus.ir/docs)
 
@@ -54,7 +54,8 @@ php artisan vendor:publish
 After that, you can see taxus.php in the config folder
 ```php
 // config/taxus.php
-      'authorization' => env('TAXUS_SECRET', [YOUR_SECRET_ID])
+    'key' => env('TAXUS_API_KEY', 'Taxus_API_KEY'),
+    'search_key' => env('TAXUS_SEARCH_API_KEY', 'XXXXXXXXXXXXXXXX'),
 
 ```
 
