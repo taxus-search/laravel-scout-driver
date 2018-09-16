@@ -6,6 +6,7 @@
     "taxus",
     "laravel"
   ],
+  "minimum-stability": "dev",
   "homepage": "https://github.com/taxus-search/laravel-scout-driver",
   "license": "MIT",
   "type": "library",
