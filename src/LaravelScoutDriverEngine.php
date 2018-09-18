@@ -25,7 +25,7 @@ class LaravelScoutDriverEngine extends Engine
   {
     $searchableModel = $model->toSearchableArray();
     $id=$model[$model->getKeyName()];
-    if(array_key_exists($searchableModel['type'])!=null)
+    if(@$searchableModel['type'])
     {
       return $searchableModel['type'].'-'.$id;
     }
