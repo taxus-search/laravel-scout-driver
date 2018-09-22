@@ -73,7 +73,7 @@ class LaravelScoutDriverEngine extends Engine
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL,config('taxus.base_url').'/items');
       curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Authorization: '.config('taxus.authorization'),
+        'Authorization: '.config('taxus.key'),
         'Content-Type: application/json'
       ));
       curl_setopt($ch, CURLOPT_POST, 1);
