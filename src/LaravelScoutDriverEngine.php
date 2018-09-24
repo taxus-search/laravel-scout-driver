@@ -7,6 +7,7 @@ use TaxusSearch\Client as taxus;
 use Laravel\Scout\Engines\Engine;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Log;
 
 
 class LaravelScoutDriverEngine extends Engine
@@ -17,8 +18,7 @@ class LaravelScoutDriverEngine extends Engine
 
   public function __construct()
   {
-
-
+    Log::debug('taxus-config: '.json_encode(config('taxus')));
   }
 
   private function getTaxusUniqueId($model)
@@ -69,6 +69,8 @@ class LaravelScoutDriverEngine extends Engine
       $model = $model->toSearchableArray();
       $model['id'] = $id;
       $model = json_encode($model);
+      Log::debug('taxus-curl-update-$model: '.$model);
+
       ob_start();
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL,config('taxus.base_url').'/items');
@@ -80,7 +82,9 @@ class LaravelScoutDriverEngine extends Engine
       curl_setopt($ch, CURLOPT_POSTFIELDS, $model);
 
       $server_output = curl_exec ($ch);
+      Log::debug('taxus-curl-$server_output: '.$server_output);
       curl_close ($ch);
+
     }
 
 
@@ -98,6 +102,7 @@ class LaravelScoutDriverEngine extends Engine
     if ($models->isEmpty()) {
       return;
     }
+    Log::debug('taxus-curl-delete-$model: '.$model);
     foreach ($models as $model) {
       $id=$this->getTaxusUniqueId($model);
 
@@ -111,7 +116,7 @@ class LaravelScoutDriverEngine extends Engine
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 
       $server_output = curl_exec($ch);
-
+      Log::debug('taxus-curl-$server_output: '.$server_output);
       curl_close($ch);
     }
   }
