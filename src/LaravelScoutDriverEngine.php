@@ -80,7 +80,7 @@ class LaravelScoutDriverEngine extends Engine
       ));
       curl_setopt($ch, CURLOPT_POST, 1);
       curl_setopt($ch, CURLOPT_POSTFIELDS, $model);
-
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       $server_output = curl_exec ($ch);
       Log::debug('taxus-curl-$server_output: '.$server_output);
       curl_close ($ch);
@@ -113,6 +113,7 @@ class LaravelScoutDriverEngine extends Engine
         'Authorization: ' . config('taxus.key'),
         'Content-Type: application/json'
       ));
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 
       $server_output = curl_exec($ch);
@@ -187,7 +188,7 @@ class LaravelScoutDriverEngine extends Engine
     ));
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $server_output = json_decode( curl_exec($ch) );
     curl_close($ch);
 
